@@ -21,7 +21,7 @@ class Product extends React.Component {
   }
 
   render() {
-    console.log("aniiiiiiiii", this.state.product);
+    // console.log("aniiiiiiiii", this.state.product);
     return (
       <div>
         <ImageSlider />

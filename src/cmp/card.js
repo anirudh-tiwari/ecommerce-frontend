@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { Link } from "@reach/router";
+import { Link } from 'react-router-dom';
 
 class Card extends React.Component {
   constructor(props) {
@@ -39,11 +39,19 @@ class Card extends React.Component {
           </div>
           <div>
             <Link
+              className="grey_button"
+              to={{
+                pathname: '/cardview',
+                state: { product_name: this.props.product.NAME }
+              }}>
+              Viewss
+            </Link>
+            {/* <Link
               class="grey_button"
               to={`/cardview/${this.props.product.NAME}`}
             >
               View
-            </Link>
+            </Link> */}
             <Link
               class="green_button position2"
               to={`/cardview/${this.props.product.name}`}

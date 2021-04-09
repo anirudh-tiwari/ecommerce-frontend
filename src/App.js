@@ -6,28 +6,39 @@ import Cardview from "./cmp/card_view";
 import Cart from "./cmp/cart";
 import Carts from "./cmp/carts";
 import Checkout from "./cmp/checkout";
-import Navbar from "./cmp/navbar";
+import Navbars from "./cmp/navbars";
 import Pagination from "./cmp/pagination";
-import Search_card from "./cmp/search_card";
-import { Router } from "@reach/router";
+import ProductSearch from "./cmp/ProductSearch";
+import { Route, Switch } from 'react-router-dom';
 import ImageSlider from "./cmp/imageslider";
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
-        <Router>
+        <Navbars />
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/signin" component={Signin} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/cardview" component={Cardview} />
+          <Route path="/product" component={Product} />
+          <Route path="/productsearch" component={ProductSearch} />
+          <Route path="/pagination" component={Pagination} />
+          <Route path="/imageslider" component={ImageSlider} />
+          <Route path="/cart" component={Carts} />
+        </Switch>
+        {/* <Router>
           <Login path="/login" />
           <Signin path="/signin" />
           <Checkout path="/checkout" />
-          <Cardview path="/cardview/:productName" />
+          <Cardview path="/cardview" />
           <Product path="/product" />
           <Search_card path="/search_card/:searchProductName" />
           <Pagination path="/pagination" />
           <ImageSlider path="/imageslider" />
           <Carts path="/cart" />
-        </Router>
+        </Router> */}
       </div>
     );
   }

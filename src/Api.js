@@ -4,10 +4,10 @@ const Api = {
     return fetchRequests.get("product/get");
   },
   getViewProducts: (name) => {
-    return fetchRequests.get(`/GetViewProducts/?name=${name}`);
+    return fetchRequests.get(`product/view?Name=${name}`);
   },
-  getSearchProducts: (name) => {
-    return fetchRequests.get(`/GetSearchProducts/?types=${name}`);
+  getSearchProducts: (search) => {
+    return fetchRequests.get(`product/search?type=${search}`);
   },
 };
 export default Api;

@@ -496,12 +496,12 @@
 }
 
 .search_dimension {
-  width: 500px;
-  height: 38px;
-  font-size: 15px;
-  color: black;
-  position: relative;
-  top: 7px;
+  width: 500px !important;
+  height: 38px !important;
+  font-size: 15px !important;
+  color: black !important;
+  position: relative !important;
+  top: 7px !important;
 }
 
 .navbar_cart_text {
@@ -624,3 +624,21 @@
 .navbar {
   margin-bottom: 0px;
 }
+
+.navbar_search_button{
+width: 50px !important;
+height: 35px !important;
+position: absolute !important;
+left: 741px !important;
+top: 14px !important;
+background-color: white !important;
+border: white !important;
+}
+
+.navbar_search_submit{
+  position: absolute;
+  left: 27px;
+  top: 8px;
+  height: 25px;
+}
+

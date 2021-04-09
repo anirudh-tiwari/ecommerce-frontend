@@ -10,13 +10,14 @@ class Cardview extends React.Component {
     this.state = { product: [] };
   }
   componentDidMount() {
-    Api.getViewProducts(this.props.productName).then((response) => {
-      // console.log(response.data);
+    Api.getViewProducts(this.props.location.state.product_name).then((response) => {
+      // console.log(response.data);  
       this.setState({ product: response.data });
     });
   }
 
   render() {
+    console.log("iiiiii", this.state.product);
     return (
       <div className="container">
         <div className="row ">
@@ -28,7 +29,7 @@ class Cardview extends React.Component {
                     <div className="card_view_image_dimension">
                       <img
                         className="card_view_image"
-                        src={ProductRecord.image}
+                        src={ProductRecord.IMAGE}
                         alt="Avatar"
                       />
                     </div>
@@ -36,11 +37,11 @@ class Cardview extends React.Component {
                 </div>
                 <div className="col-7">
                   <h5 className="card_view_detail_size">
-                    <b>{ProductRecord.name}</b>
+                    <b>{ProductRecord.NAME}</b>
                   </h5>
 
                   <h6 className="color card_view_detail_size">
-                    <b>{ProductRecord.description}</b>
+                    <b>{ProductRecord.DESCRIPTION}</b>
                   </h6>
 
                   <h6 className="card_view_detail_size">
@@ -51,11 +52,11 @@ class Cardview extends React.Component {
                     Original Price :{" "}
                     <b className="decoration ">
                       {" "}
-                      {ProductRecord.original_price}
+                      {ProductRecord.ORIGINAL_PRICE}
                     </b>
                   </h6>
                   <h6 className="card_view_detail_size">
-                    <b>Price :</b> {ProductRecord.discount_price}
+                    <b>Price :</b> {ProductRecord.DISCOUNT_PRICE}
                   </h6>
                   <br />
                   <Link class="green_button" to={"/cart"}>
