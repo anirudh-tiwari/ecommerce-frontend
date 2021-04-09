@@ -15,32 +15,32 @@ class Card extends React.Component {
           <div className="card_image">
             <img
               className="card_image_dimension"
-              src={this.props.product.image}
+              src={this.props.product.IMAGE}
               alt="Avatar"
             />
           </div>
           <div className="card_detail ">
             <h6 className="card_detail_size ">
-              <b>{this.props.product.name}</b>
+              <b>{this.props.product.NAME}</b>
             </h6>
             <h5 className="card_detail_size color">
-              <b>{this.props.product.description}</b>
+              <b>{this.props.product.DESCRIPTION}</b>
             </h5>
             <h6 className=" card_detail_size">
               Original Price{" "}
               <b className="decoration ">
                 {" "}
-                {this.props.product.original_price}
+                {this.props.product.ORIGINAL_PRICE}
               </b>
             </h6>
             <h6 className="card_detail_size ">
-              Price {this.props.product.discount_price}
+              Price {this.props.product.DISCOUNT_PRICE}
             </h6>
           </div>
           <div>
             <Link
               class="grey_button"
-              to={`/cardview/${this.props.product.name}`}
+              to={`/cardview/${this.props.product.NAME}`}
             >
               View
             </Link>

@@ -21,14 +21,14 @@ class Product extends React.Component {
   }
 
   render() {
-    console.log(this.state.product);
+    console.log("aniiiiiiiii", this.state.product);
     return (
       <div>
         <ImageSlider />
         <div className="container-fluid">
           <div className="row ">
             {this.state.product
-              .slice(0, this.state.value)
+              // .slice(0, this.state.value)
               .map((ProductRecord) => {
                 return (
                   <div className="col-3 ">

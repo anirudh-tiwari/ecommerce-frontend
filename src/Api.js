@@ -1,7 +1,7 @@
 import fetchRequests from "./Fetch";
 const Api = {
   getProduct: () => {
-    return fetchRequests.get("/GetProducts/");
+    return fetchRequests.get("product/get");
   },
   getViewProducts: (name) => {
     return fetchRequests.get(`/GetViewProducts/?name=${name}`);
