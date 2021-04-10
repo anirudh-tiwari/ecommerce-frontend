@@ -29,30 +29,3 @@ const ProductSearch = (props) => {
 
 export default ProductSearch;
 
-// class ProductSearch extends React.Component {
-//   constructor() {
-//     super();
-//     this.state = { search: [] };
-//   }
-//   componentDidMount() {
-//     Api.getSearchProducts(this.props.location.state.ProductSearch).then((response) => {
-//       this.setState({ search: response.data });
-//     });
-//   }
-//   render() {
-//     return (
-//       <div>
-//         <div className="container-fluid">
-//           <div className="row ">
-//             {this.state.search.map((search_product) => (
-//               <div className="col-3 ">
-//                 <Card product={search_product} />
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-
