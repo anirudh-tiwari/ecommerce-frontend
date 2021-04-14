@@ -10,6 +10,7 @@ const Product = () => {
   const [product, setProduct] = useState([]);
   useEffect(() => {
     Api.getProduct().then((response) => {
+      console.log(response)
       setProduct(response.data)
     });
   }, [])

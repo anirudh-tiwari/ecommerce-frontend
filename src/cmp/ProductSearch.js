@@ -10,7 +10,7 @@ const ProductSearch = (props) => {
     Api.getSearchProducts(props.location.state.ProductSearch).then((response) => {
       setSearch(response.data)
     });
-  }, [])
+  }, [props])
 
   return (
     <div>

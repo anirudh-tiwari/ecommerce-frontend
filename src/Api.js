@@ -3,8 +3,8 @@ const Api = {
   getProduct: () => {
     return fetchRequests.get("product/get");
   },
-  getViewProducts: (name) => {
-    return fetchRequests.get(`product/view?Name=${name}`);
+  getViewProducts: (id) => {
+    return fetchRequests.get(`product/view?ID=${id}`);
   },
   getSearchProducts: (search) => {
     return fetchRequests.get(`product/search?type=${search}`);

@@ -7,12 +7,12 @@ const Card = (props) => {
   return (
     <>
       <div className=" card">
-        <div className="card_image">
-          <img
+        <div className="card_image" style={{ backgroundImage: `url('${props.product.IMAGE}')` }}>
+          {/* <img
             className="card_image_dimension"
             src={props.product.IMAGE}
             alt="Avatar"
-          />
+          /> */}
         </div>
         <div className="card_detail ">
           <h6 className="card_detail_size ">
@@ -29,7 +29,7 @@ const Card = (props) => {
             </b>
           </h6>
           <h6 className="card_detail_size ">
-            Price {props.product.DISCOUNT_PRICE}
+            Discount Price {props.product.DISCOUNT_PRICE}
           </h6>
         </div>
         <div>
@@ -37,7 +37,7 @@ const Card = (props) => {
             className="grey_button"
             to={{
               pathname: '/cardview',
-              state: { product_name: props.product.NAME }
+              state: { productID: props.product.ID }
             }}>
             Viewss
             </Link>
