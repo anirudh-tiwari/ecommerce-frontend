@@ -2,66 +2,50 @@ import React from "react";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "@reach/router";
+import { useSelector } from 'react-redux'
 
 const Cart = () => {
+  const userData = useSelector(state => state.users)
+  console.log("qqqqqqq", userData)
   return (
     <div className="container-fluid">
       <div className="row">
         <div className="col-sm-8 ">
           <div className="ani ">
             <div className="row">
-              <div className="col-sm-3 ">
-                <img
-                  className="cart_card_image"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhr3ufbveAtb-YupDZuDSI_dh3mDLt_wUNNA&usqp=CAU"
-                  alt="Avatar"
-                />
-              </div>
-              <div className="col-sm-3 ">
-                <div>
-                  <h3>Denim jacket</h3>
-                  <h3>9999</h3>
-                </div>
-              </div>
-              <div className="col-sm-3 ">
-                <div className="">
-                  <h3>Qty. 1</h3>
-                </div>
-              </div>
-              <div className="col-sm-3 ">
-                <div className="">
-                  <h3 className="font_increase">
-                    <b className="space_font">+</b>
-                    <b>-</b>
-                  </h3>
-                </div>
-              </div>
-              <div className="col-sm-3 ">
-                <img
-                  className="cart_card_image"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhr3ufbveAtb-YupDZuDSI_dh3mDLt_wUNNA&usqp=CAU"
-                  alt="Avatar"
-                />
-              </div>
-              <div className="col-sm-3 ">
-                <div>
-                  <h3>Denim jacket</h3>
-                  <h3>9999</h3>
-                </div>
-              </div>
-              <div className="col-sm-3 ">
-                <div className="">
-                  <h3>Qty. 1</h3>
-                </div>
-              </div>
-              <div className="col-sm-3 ">
-                <div className="">
-                  <h3 className="font_increase">
-                    <b className="space_font">+</b>
-                    <b>-</b>
-                  </h3>
-                </div>
-              </div>
+              {userData.map((ProductRecord) => {
+                return (
+                  <>
+                    <div className="col-sm-3 ">
+                      <img
+                        className="cart_card_image"
+                        src={ProductRecord.IMAGE}
+                        alt="Avatar"
+                      />
+                    </div>
+                    <div className="col-sm-3 ">
+                      <div>
+                        <h3>{ProductRecord.NAME}</h3>
+                        <h3>{ProductRecord.DISCOUNT_PRICE}</h3>
+                      </div>
+                    </div>
+                    <div className="col-sm-3 ">
+                      <div className="">
+                        <h3>Qty. 1</h3>
+                      </div>
+                    </div>
+                    <div className="col-sm-3 ">
+                      <div className="">
+                        <h3 className="font_increase">
+                          <b className="space_font">+</b>
+                          <b>-</b>
+                        </h3>
+                      </div>
+                    </div>
+                  </>
+                )
+              }
+              )}
             </div>
           </div>
         </div>

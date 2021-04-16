@@ -4,9 +4,11 @@ import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.min.css";
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux'
 
 const Navbars = () => {
     const [types, setTypes] = useState("");
+    // const numOfClothes = useSelector(state => state.numOfClothes)
     let history = useHistory();
     const onFormSubmit = e => {
         e.preventDefault();
@@ -45,7 +47,7 @@ const Navbars = () => {
                                 />
                             </li>
                             <button type="submit" className="form-control navbar_search_button" onClick={onFormSubmit} >
-                            <span class="fa fa-search navbar_search_submit"></span>
+                                <span class="fa fa-search navbar_search_submit"></span>
                             </button>
                         </form>
                     </div>
@@ -53,8 +55,19 @@ const Navbars = () => {
                 <ul class="navbar-nav ml-auto navbar_right_side">
                     <button class=" navbar_button ">Logout</button>
                     <Link to="/cardview" className=" navbar_cart fa fa-shopping-cart ">
-                        <span className="navbar_cart_text">Cart</span>
+                        <span className="navbar_cart_text"></span>
                     </Link>
+                    {/* {numOfClothes ?
+                        <>
+                            <h1 className="cartnumber">{numOfClothes}</h1>
+                            <Link to="/cardview" className=" navbar_cart fa fa-shopping-cart ">
+                                <span className="navbar_cart_text"></span>
+                            </Link>
+                        </> :
+                        <Link to="/cardview" className=" navbar_cart fa fa-shopping-cart ">
+                            <span className="navbar_cart_text"></span>
+                        </Link>
+                    } */}
                 </ul>
             </nav>
         </div>

@@ -2,8 +2,21 @@ import React from "react";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { fetchUsers } from '../redux/index'
+import { useHistory } from "react-router-dom";
 
 const Card = (props) => {
+  const dispatch = useDispatch()
+  let history = useHistory();
+  const cart = (id) => {
+    dispatch(fetchUsers(id))
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    history.push({
+      pathname: '/cart',
+    });
+  }
   return (
     <>
       <div className=" card">
@@ -41,12 +54,15 @@ const Card = (props) => {
             }}>
             Viewss
             </Link>
-          <Link
+          {/* <Link
             class="green_button position2"
             to={`/cardview/${props.product.name}`}
           >
             Add to Cart
-            </Link>
+            </Link> */}
+          {/* <button class="green_button position2" onClick={cart}>Buy Clothes</button> */}
+          <button type="button" class="btn btn-outline-success position2" onClick={() => cart(props.product.ID)}>Buy Clothes</button>
+          {/* () => dispatch(increment()) */}
         </div>
       </div>
     </>

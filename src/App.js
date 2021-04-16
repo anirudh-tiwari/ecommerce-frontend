@@ -10,24 +10,32 @@ import Pagination from "./cmp/pagination";
 import ProductSearch from "./cmp/ProductSearch";
 import { Route, Switch } from 'react-router-dom';
 import ImageSlider from "./cmp/imageslider";
+import User from "./cmp/User";
+import Demo from "./cmp/demo";
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 const App = () => {
 
   return (
-    <div>
-      <Navbars />
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/signin" component={Signin} />
-        <Route path="/checkout" component={Checkout} />
-        <Route path="/cardview" component={Cardview} />
-        <Route path="/product" component={Product} />
-        <Route path="/productsearch" component={ProductSearch} />
-        <Route path="/pagination" component={Pagination} />
-        <Route path="/imageslider" component={ImageSlider} />
-        <Route path="/cart" component={Cart} />
-      </Switch>
-    </div>
+    <Provider store={store}>
+      <div>
+        <Navbars />
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/signin" component={Signin} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/cardview" component={Cardview} />
+          <Route path="/product" component={Product} />
+          <Route path="/productsearch" component={ProductSearch} />
+          <Route path="/pagination" component={Pagination} />
+          <Route path="/imageslider" component={ImageSlider} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/demo" component={Demo} />
+          <Route path="/user" component={User} />
+        </Switch>
+      </div>
+    </Provider>
   );
 }
 
