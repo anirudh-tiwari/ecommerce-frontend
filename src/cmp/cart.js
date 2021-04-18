@@ -1,11 +1,15 @@
 import React from "react";
 import "../App.css";
+import { useSelector, useDispatch } from 'react-redux'
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "@reach/router";
-import { useSelector } from 'react-redux'
+import { decrement, increment, addQuantity, subtractQuantity } from '../redux';
 
 const Cart = () => {
-  const userData = useSelector(state => state.users)
+  const userData = useSelector(state => state.product.product)
+  console.log("zzzzzzzzz", userData)
+  const dispatch = useDispatch()
+  // const userData = useSelector(state => state.users)
   console.log("qqqqqqq", userData)
   return (
     <div className="container-fluid">
@@ -14,33 +18,38 @@ const Cart = () => {
           <div className="ani ">
             <div className="row">
               {userData.map((ProductRecord) => {
+                var SUM = 0
                 return (
                   <>
                     <div className="col-sm-3 ">
                       <img
                         className="cart_card_image"
-                        src={ProductRecord.IMAGE}
+                        src={ProductRecord.product.IMAGE}
                         alt="Avatar"
                       />
                     </div>
                     <div className="col-sm-3 ">
                       <div>
-                        <h3>{ProductRecord.NAME}</h3>
-                        <h3>{ProductRecord.DISCOUNT_PRICE}</h3>
+                        <h3>{ProductRecord.product.NAME}</h3>
+                        <h3>{ProductRecord.product.DISCOUNT_PRICE}</h3>
                       </div>
                     </div>
                     <div className="col-sm-3 ">
                       <div className="">
-                        <h3>Qty. 1</h3>
+                        <h3>Qty. </h3>
+                        <h3>{ProductRecord.quantity}</h3>
                       </div>
                     </div>
                     <div className="col-sm-3 ">
-                      <div className="">
-                        <h3 className="font_increase">
-                          <b className="space_font">+</b>
-                          <b>-</b>
-                        </h3>
-                      </div>
+                      {/* <div className=""> */}
+                      <h3 className="font_increase">
+                        {/* <button onClick={() => dispatch(increment())}>+</button> */}
+                        <button onClick={() => dispatch(addQuantity(ProductRecord.product.ID))}>+</button>
+                        {/* <b className="space_font">+</b> */}
+                        <button onClick={() => dispatch(subtractQuantity(ProductRecord.product.ID))}>-</button>
+                        {/* <b>-</b> */}
+                      </h3>
+                      {/* </div> */}
                     </div>
                   </>
                 )
@@ -55,11 +64,13 @@ const Cart = () => {
             <h2>Total Items</h2>
 
             <h2>
-              <span className="color">8</span>
+              <span className="color">{userData.length}</span>
             </h2>
             <h2>Total Payments</h2>
             <h2>
-              <span className="color">5900.00</span>
+              {userData.reduce(function (sum, current) {
+                return sum + current.product.DISCOUNT_PRICE;
+              }, 0)}
             </h2>
             <br />
             <h1 className="linebetween"></h1>

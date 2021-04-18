@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 
 const Navbars = () => {
     const [types, setTypes] = useState("");
-    // const numOfClothes = useSelector(state => state.numOfClothes)
+    const cartNumber = useSelector(state => state.cartNumber.cartNumber)
     let history = useHistory();
     const onFormSubmit = e => {
         e.preventDefault();
@@ -54,12 +54,9 @@ const Navbars = () => {
                 </ul>
                 <ul class="navbar-nav ml-auto navbar_right_side">
                     <button class=" navbar_button ">Logout</button>
-                    <Link to="/cardview" className=" navbar_cart fa fa-shopping-cart ">
-                        <span className="navbar_cart_text"></span>
-                    </Link>
-                    {/* {numOfClothes ?
+                    {cartNumber ?
                         <>
-                            <h1 className="cartnumber">{numOfClothes}</h1>
+                            <h1 className="cartnumber">{cartNumber}</h1>
                             <Link to="/cardview" className=" navbar_cart fa fa-shopping-cart ">
                                 <span className="navbar_cart_text"></span>
                             </Link>
@@ -67,7 +64,7 @@ const Navbars = () => {
                         <Link to="/cardview" className=" navbar_cart fa fa-shopping-cart ">
                             <span className="navbar_cart_text"></span>
                         </Link>
-                    } */}
+                    }
                 </ul>
             </nav>
         </div>

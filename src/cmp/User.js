@@ -23,10 +23,10 @@
 
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchUsers } from '../redux/index'
+import { fetchProduct } from '../redux/index'
 function User(props) {
     useEffect(() => {
-        props.fetchUsers()
+        props.fetchProduct()
     }, [])
     // return userData.loading ? (<h1>loading</h1>) : userData.error ? (<h2>{userData.error}</h2>) : (
     //     <div>
@@ -59,7 +59,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 
     return {
-        fetchUsers: () => dispatch(fetchUsers())
+        fetchUsers: () => dispatch(fetchProduct())
     }
 }
 

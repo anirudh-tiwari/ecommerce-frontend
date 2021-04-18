@@ -3,16 +3,19 @@ import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
-import { fetchUsers } from '../redux/index'
+import { fetchProduct } from '../redux/index'
 import { useHistory } from "react-router-dom";
+import { increment } from '../redux';
+
 
 const Card = (props) => {
   const dispatch = useDispatch()
   let history = useHistory();
-  const cart = (id) => {
-    dispatch(fetchUsers(id))
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+  var cart = (id) => {
+    dispatch(fetchProduct(id))
+    // dispatch(increment())
+    // document.body.scrollTop = 0;
+    // document.documentElement.scrollTop = 0;
     history.push({
       pathname: '/cart',
     });
@@ -50,6 +53,7 @@ const Card = (props) => {
             className="grey_button"
             to={{
               pathname: '/cardview',
+
               state: { productID: props.product.ID }
             }}>
             Viewss
@@ -61,7 +65,7 @@ const Card = (props) => {
             Add to Cart
             </Link> */}
           {/* <button class="green_button position2" onClick={cart}>Buy Clothes</button> */}
-          <button type="button" class="btn btn-outline-success position2" onClick={() => cart(props.product.ID)}>Buy Clothes</button>
+          <button class="btn btn-outline-success position2" onClick={() => cart(props.product.ID)}>Buy Clothes</button>
           {/* () => dispatch(increment()) */}
         </div>
       </div>

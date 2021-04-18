@@ -1,3 +1,3 @@
-export { increment } from "./cloth/clothActions"
-export { decrement } from "./cloth/clothActions"
-export * from "./user/userActions"
+export { increment } from "./cartNumber/cartNumberActions"
+export { decrement } from "./cartNumber/cartNumberActions"
+export * from "./product/productActions"
