@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 
 const Navbars = () => {
+    const userData = useSelector(state => state.product.product)
     const [types, setTypes] = useState("");
-    const cartNumber = useSelector(state => state.cartNumber.cartNumber)
     let history = useHistory();
     const onFormSubmit = e => {
         e.preventDefault();
@@ -54,9 +54,11 @@ const Navbars = () => {
                 </ul>
                 <ul class="navbar-nav ml-auto navbar_right_side">
                     <button class=" navbar_button ">Logout</button>
-                    {cartNumber ?
+                    {userData.length !== 0 ?
                         <>
-                            <h1 className="cartnumber">{cartNumber}</h1>
+                            <h1 className="cartnumber">{userData.reduce(function (sum, current) {
+                                return sum + current.quantity;
+                            }, 0)}</h1>
                             <Link to="/cardview" className=" navbar_cart fa fa-shopping-cart ">
                                 <span className="navbar_cart_text"></span>
                             </Link>

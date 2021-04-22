@@ -27,8 +27,6 @@ const productReducer = (state = initialState, action) => {
                 productId: payload.ID,
                 product: payload
             }
-            // var ani = [...state.product, cartItem]
-            // debugger
             return {
                 loading: false,
                 product: [...state.product, cartItem],
@@ -39,7 +37,7 @@ const productReducer = (state = initialState, action) => {
                 ...state,
                 product: state.product.map(products =>
                     products.product.ID === action.id
-                        ? { ...products, quantity: products.quantity + 1 }
+                        ? { ...products, quantity: products.quantity + 1, price: (products.quantity + 1) * products.product.DISCOUNT_PRICE }
                         : products,
                 ),
             };
@@ -51,6 +49,7 @@ const productReducer = (state = initialState, action) => {
                         ? {
                             ...products,
                             quantity: products.quantity !== 1 ? products.quantity - 1 : 1,
+                            price: (products.quantity - 1) * products.price
                         }
                         : products,
                 ),
