@@ -2,6 +2,8 @@ import {
     FETCH_Product_REQUEST,
     FETCH_Product_SUCCESS,
     FETCH_Product_FAILURE,
+    REMOVE_FROM_CART,
+    EMPTY_CART,
     ADD_QUANTITY,
     SUB_QUANTITY
 } from "./productTypes"
@@ -41,6 +43,13 @@ const productReducer = (state = initialState, action) => {
                         : products,
                 ),
             };
+        case REMOVE_FROM_CART:
+            return {
+                ...state,
+                product: state.product.filter(products =>
+                    products.id == action.id
+                ),
+            };
         case SUB_QUANTITY:
             return {
                 ...state,
@@ -49,10 +58,18 @@ const productReducer = (state = initialState, action) => {
                         ? {
                             ...products,
                             quantity: products.quantity !== 1 ? products.quantity - 1 : 1,
-                            price: (products.quantity - 1) * products.price
+                            price: products.price !== 0 ? products.product.DISCOUNT_PRICE : (products.quantity - 1) * products.price
+                            // price: (products.quantity - 1) * products.price
                         }
                         : products,
                 ),
+            };
+        case EMPTY_CART:
+            return {
+                ...state,
+                product: state.product.filter(products =>
+                    products.id === 0
+                )
             };
         case FETCH_Product_FAILURE:
             return {

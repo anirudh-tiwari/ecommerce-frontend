@@ -2,6 +2,8 @@ import {
     FETCH_Product_REQUEST,
     FETCH_Product_SUCCESS,
     FETCH_Product_FAILURE,
+    REMOVE_FROM_CART,
+    EMPTY_CART,
     ADD_QUANTITY,
     SUB_QUANTITY
 } from "./productTypes"
@@ -25,7 +27,12 @@ export const fetchProductFailure = error => {
         payload: error
     }
 }
-
+export const removeFromCart = id => {
+    return {
+        type: REMOVE_FROM_CART,
+        id,
+    };
+};
 export const subtractQuantity = id => {
     return {
         type: SUB_QUANTITY,
@@ -36,6 +43,12 @@ export const addQuantity = id => {
     return {
         type: ADD_QUANTITY,
         id,
+    };
+};
+
+export const emptyCart = () => {
+    return {
+        type: EMPTY_CART,
     };
 };
 
