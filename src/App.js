@@ -11,7 +11,7 @@ import ProductSearch from "./cmp/ProductSearch";
 import { Route, Switch } from 'react-router-dom';
 import ImageSlider from "./cmp/imageslider";
 import User from "./cmp/User";
-import Demo from "./cmp/demo";
+import About from "./cmp/About";
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/pagination" component={Pagination} />
           <Route path="/imageslider" component={ImageSlider} />
           <Route path="/cart" component={Cart} />
-          <Route path="/demo" component={Demo} />
+          <Route path="/about" component={About} />
           <Route path="/user" component={User} />
         </Switch>
       </div>
