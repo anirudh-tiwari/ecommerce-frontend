@@ -4,7 +4,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.min.css";
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux'
+// import cartHover from "./cartHover";
+import { useSelector } from 'react-redux';
 
 const Navbars = () => {
     const userData = useSelector(state => state.product.product)
@@ -24,8 +25,8 @@ const Navbars = () => {
             <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
                 <ul class="navbar-nav  ">
                     <li class="nav-item active">
-                        <a class="nav-link fa fa-shopping-bag " href="#">
-                            <span className="navbar_shopping_bag">Clothing Solutions</span>
+                        <a class="nav-link fa fa-shopping-bag navbarShoppingBag " href="#">
+                            <span className="navbar_shopping_bag ">Clothing Solutions</span>
                         </a>
                     </li>
                     <li class="nav-item navbar_store">
@@ -33,6 +34,8 @@ const Navbars = () => {
                             Store
               </a>
                     </li>
+                    <cartHover />
+
                     <div>
                         <form onSubmit={onFormSubmit}>
                             <li class="nav-item navbar_search">
@@ -46,12 +49,13 @@ const Navbars = () => {
                                     autocomplete="off"
                                 />
                             </li>
-                            <button type="submit" className="form-control navbar_search_button" onClick={onFormSubmit} >
+                            <button type="submit" className="form-control navbar_search_button navbarSearchIcon" onClick={onFormSubmit} >
                                 <span class="fa fa-search navbar_search_submit"></span>
                             </button>
                         </form>
                     </div>
                 </ul>
+                <cartHover />
                 <ul class="navbar-nav ml-auto navbar_right_side">
                     <button class=" navbar_button ">Logout</button>
                     {userData.length !== 0 ?
@@ -59,14 +63,15 @@ const Navbars = () => {
                             <h1 className="cartnumber">{userData.reduce(function (sum, current) {
                                 return sum + current.quantity;
                             }, 0)}</h1>
-                            <Link to="/cardview" className=" navbar_cart fa fa-shopping-cart ">
+                            <Link to="/cart" className=" navbar_cart fa fa-shopping-cart navbarCart">
                                 <span className="navbar_cart_text"></span>
                             </Link>
                         </> :
-                        <Link to="/cardview" className=" navbar_cart fa fa-shopping-cart ">
+                        <Link to="/cart" className=" navbar_cart fa fa-shopping-cart navbarCart">
                             <span className="navbar_cart_text"></span>
                         </Link>
                     }
+
                 </ul>
             </nav>
         </div>

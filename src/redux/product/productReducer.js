@@ -47,8 +47,8 @@ const productReducer = (state = initialState, action) => {
             return {
                 ...state,
                 product: state.product.filter(products =>
-                    products.id == action.id
-                ),
+                    products.productId !== action.id
+                )
             };
         case SUB_QUANTITY:
             return {

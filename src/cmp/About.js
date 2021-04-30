@@ -100,8 +100,8 @@ function About() {
                     <div className="image2"></div>
                     <div className="text">
                         <h2>Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non numquam eius modi tempora incidunt. </h2><br /><br />
-                        <h3>Sarah Jones</h3>
-                        <h5>Fashion Designer </h5>
+                        <h3>Anirudh Tiwari</h3>
+                        <h5>CEO, CLOTHING SOLUTIONS </h5>
                     </div>
                 </div>
                 <div className="div2">

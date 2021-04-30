@@ -12,6 +12,7 @@ import { Route, Switch } from 'react-router-dom';
 import ImageSlider from "./cmp/imageslider";
 import User from "./cmp/User";
 import About from "./cmp/About";
+import cartHover from "./cmp/cartHover";
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/cart" component={Cart} />
           <Route path="/about" component={About} />
           <Route path="/user" component={User} />
+          <Route path="/carthover" component={cartHover} />
         </Switch>
       </div>
     </Provider>
