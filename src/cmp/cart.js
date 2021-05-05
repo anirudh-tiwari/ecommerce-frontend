@@ -27,8 +27,17 @@ const Cart = () => {
   }
 
   return (
-    <>
-      {userData.length === 0 ? <h1>your cart is empty</h1> :
+    <div >
+      {userData.length === 0 ? <div className="cartEmptyText cart">
+        <span><i class="fa fa-shopping-cart cartEmptyTextIcon"></i></span><br /><br />
+        <h3>Did you leave something in your cart? Sign in to check.</h3><br />
+        <button className="cartHoverCheckout">Sign In</button> <br /><br />
+
+        <Link to={"/"} className="cartHoverGoShopping">
+          Go Shopping
+        </Link>
+      </div>
+        :
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-8 ">
@@ -59,12 +68,19 @@ const Cart = () => {
                         <div className="col-sm-2 ">
                           {/* <div className=""> */}
                           <h3 className="font_increase">
-                            <button onClick={() => quantityAdd(ProductRecord.product.ID)}>+</button>
-                            <button onClick={() => quantitySubtract(ProductRecord.product.ID)}>-</button>
+                            <Link to={"/"} onClick={() => quantityAdd(ProductRecord.product.ID)}>
+                              <span><i class="fa fa-plus cartIcon"></i></span>
+                            </Link>
+                            <Link to={"/"} onClick={() => quantitySubtract(ProductRecord.product.ID)}>
+                              <span><i class="fa fa-minus cartIcon"></i></span>
+                            </Link>
                           </h3>
                         </div>
                         <div className="col-sm-2 ">
-                          <button onClick={() => quantityDelete(ProductRecord.product.ID)}>delete</button>
+                          <Link to={"/"} onClick={() => quantityDelete(ProductRecord.product.ID)}>
+                            <span><i class="fa fa-trash cartIconDelete"></i></span>
+                          </Link>
+                          {/* <button onClick={() => quantityDelete(ProductRecord.product.ID)}>delete</button> */}
                         </div>
                       </>
                     )
@@ -107,7 +123,7 @@ const Cart = () => {
           </div>
         </div>
       }
-    </>
+    </div>
   );
 }
 

@@ -16,7 +16,7 @@ function About() {
             <div className="photo">
                 <div className="centreText">
                     <h1 className="centreTextTop"><strong>About Us</strong></h1>
-                    <h3>Welcome to Clothing Solutions</h3>
+                    <h3 className="centreTextTopDesc">Welcome to Clothing Solutions</h3>
                 </div>
             </div>
             <div className="AboutCard">
@@ -92,16 +92,16 @@ function About() {
                     <div className="image"></div>
                     <div className="text">
                         <h2>Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non numquam eius modi tempora incidunt. </h2><br /><br />
-                        <h3>Sarah Jones</h3>
-                        <h5>Fashion Designer </h5>
+                        <h3>Anirudh Tiwari</h3>
+                        <h5>CEO, CLOTHING SOLUTIONS </h5>
                     </div>
                 </div>
                 <div className="div2">
                     <div className="image2"></div>
                     <div className="text">
                         <h2>Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non numquam eius modi tempora incidunt. </h2><br /><br />
-                        <h3>Anirudh Tiwari</h3>
-                        <h5>CEO, CLOTHING SOLUTIONS </h5>
+                        <h3>Sarah Jones</h3>
+                        <h5>Fashion Designer </h5>
                     </div>
                 </div>
                 <div className="div2">
@@ -118,8 +118,8 @@ function About() {
                 <button className="ServiceContactButton">+91-9910231951</button>
             </div>
             <div className="map">
-                <div><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.3911402177378!2d77.2589089144084!3d28.67794398877647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfc5e54e6b163%3A0x523ae20fe007eccc!2sDr.%20Akhilesh%20Das%20Gupta%20Institute%20of%20Technology%20%26%20Management!5e0!3m2!1sen!2sin!4v1619524376198!5m2!1sen!2sin" width="806" height="450" style={{ border: 0 }} allowfullscreen="" loading="lazy"></iframe></div>
-                <div >
+                <div><iframe className="googleMap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.3911402177378!2d77.2589089144084!3d28.67794398877647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfc5e54e6b163%3A0x523ae20fe007eccc!2sDr.%20Akhilesh%20Das%20Gupta%20Institute%20of%20Technology%20%26%20Management!5e0!3m2!1sen!2sin!4v1619524376198!5m2!1sen!2sin" width="806" height="450" style={{ border: 0 }} allowfullscreen="" loading="lazy"></iframe></div>
+                <div className="mapTextdiv">
                     <i className="mapText" > Contact Us</i><br /><br />
                     <i class="fa fa-map-marker mapIcon" aria-hidden="true"><span className="mapIconTextLocation">Adgitm Shahdara, New Delhi </span><br /></i><br /><br />
                     <i class="fa fa-envelope mapIcon" aria-hidden="true"><span className="mapIconTextEnvolope">Support@clothingsolutions.com </span></i><br />< br />
@@ -129,7 +129,6 @@ function About() {
             </div><br /><br /><br /><br /><br /><br />
 
             <Footer />
-
         </div>
     )
 }

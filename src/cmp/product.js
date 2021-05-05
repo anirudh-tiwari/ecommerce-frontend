@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Api from "../Api";
-import Card from "./card";
+// import Card from "./card";
+import Ani from "./ani";
 // import Loadmore from "./loadmore";
 import ImageSlider from "./imageslider";
 
@@ -25,7 +26,8 @@ const Product = () => {
             .map((ProductRecord) => {
               return (
                 <div className="col-3 ">
-                  <Card product={ProductRecord} />
+                  {/* <Card product={ProductRecord} /> */}
+                  <Ani product={ProductRecord} />
                 </div>
               );
             })}

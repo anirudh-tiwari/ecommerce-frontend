@@ -2,17 +2,20 @@ import React from "react";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { fetchProduct } from '../redux/index'
 import { useHistory } from "react-router-dom";
-import { increment } from '../redux';
-
+import { addQuantity } from '../redux';
 
 const Card = (props) => {
+  const userData = useSelector(state => state.product.product)
   const dispatch = useDispatch()
   let history = useHistory();
   var cart = (id) => {
-    dispatch(fetchProduct(id))
+    {
+      userData.some(product => product.productId === id) ?
+        dispatch(addQuantity(id)) : dispatch(fetchProduct(id))
+    }
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     history.push({
@@ -23,11 +26,6 @@ const Card = (props) => {
     <>
       <div className=" card">
         <div className="card_image" style={{ backgroundImage: `url('${props.product.IMAGE}')` }}>
-          {/* <img
-            className="card_image_dimension"
-            src={props.product.IMAGE}
-            alt="Avatar"
-          /> */}
         </div>
         <div className="card_detail ">
           <h6 className="card_detail_size ">
@@ -57,15 +55,7 @@ const Card = (props) => {
             }}>
             Viewss
             </Link>
-          {/* <Link
-            class="green_button position2"
-            to={`/cardview/${props.product.name}`}
-          >
-            Add to Cart
-            </Link> */}
-          {/* <button class="green_button position2" onClick={cart}>Buy Clothes</button> */}
           <button class="btn btn-outline-success position2" onClick={() => cart(props.product.ID)}>Buy Clothes</button>
-          {/* () => dispatch(increment()) */}
         </div>
       </div>
     </>

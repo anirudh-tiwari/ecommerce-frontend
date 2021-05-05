@@ -25,12 +25,12 @@ const Navbars = () => {
             <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
                 <ul class="navbar-nav  ">
                     <li class="nav-item active">
-                        <a class="nav-link fa fa-shopping-bag navbarShoppingBag " href="#">
+                        <a class="nav-link fa fa-shopping-bag navbarShoppingBag " >
                             <span className="navbar_shopping_bag ">Clothing Solutions</span>
                         </a>
                     </li>
                     <li class="nav-item navbar_store">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link active" href="/product">
                             Store
               </a>
                     </li>
@@ -57,6 +57,9 @@ const Navbars = () => {
                 </ul>
                 <cartHover />
                 <ul class="navbar-nav ml-auto navbar_right_side">
+                    <Link to="/about" className="nav-link active navbarAbout">
+                        About Us
+                </Link>
                     <button class=" navbar_button ">Logout</button>
                     {userData.length !== 0 ?
                         <>
