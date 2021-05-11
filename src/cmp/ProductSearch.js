@@ -14,14 +14,12 @@ const ProductSearch = (props) => {
 
   return (
     <div>
-      <div className="container-fluid">
-        <div className="row ">
+      <div className="cardLayout">
           {search.map((search_product) => (
-            <div className="col-3 ">
+            <div >
               <Card product={search_product} />
             </div>
           ))}
-        </div>
       </div>
     </div>
   )

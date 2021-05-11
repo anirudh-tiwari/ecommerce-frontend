@@ -21,19 +21,19 @@ function About() {
             </div>
             <div className="AboutCard">
                 <div className="AboutCardSize">
-                    <h1><strong>Who Are We</strong></h1><br />
-                    <h4>We are a team of young tailor, fashion designers, cloth printer dreaming of becoming the best in our field.</h4>
+                    <h1 className="AboutCardSizeTitle"><strong>Who Are We</strong></h1><br />
+                    <h4 className="AboutCardSizeContent">We are a team of young tailor, fashion designers, cloth printer dreaming of becoming the best in our field.</h4>
                 </div>
                 <div className="AboutCardSize">
-                    <h1>Our Mission</h1><br />
-                    <h4>Our Mission is to provide best quality product with utmost satisfaction with cheap price</h4>
+                    <h1 className="AboutCardSizeTitle">Our Mission</h1><br />
+                    <h4 className="AboutCardSizeContent">Our Mission is to provide best quality product with utmost satisfaction with cheap price</h4>
                 </div>
                 <div className="AboutCardSize">
-                    <h1>What We Provide</h1><br />
+                    <h1 className="AboutCardSizeTitle">What We Provide</h1><br />
                     <ul class="AboutCardList">
-                        <li>High Quality Product</li>
-                        <li>Best Service</li>
-                        <li>Cheap Price</li>
+                        <li className="AboutCardSizeContent">High Quality Product</li>
+                        <li className="AboutCardSizeContent">Best Service</li>
+                        <li className="AboutCardSizeContent">Cheap Price</li>
                     </ul>
                 </div>
             </div>
@@ -89,27 +89,27 @@ function About() {
             </div>
             <div className="styleGrid">
                 <div className="div1">
-                    <div className="image"></div>
+                    <div className="image" style={{ backgroundImage: "url(/image/Anirudh.jpg)" }}></div>
                     <div className="text">
-                        <h2>Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non numquam eius modi tempora incidunt. </h2><br /><br />
-                        <h3>Anirudh Tiwari</h3>
-                        <h5>CEO, CLOTHING SOLUTIONS </h5>
+                        <h2 className="styleGridDesc">Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non numquam eius modi tempora incidunt. </h2><br /><br />
+                        <h3 className="styleGridName">Anirudh Tiwari</h3>
+                        <h5 className="styleGridJob">CEO, CLOTHING SOLUTIONS </h5>
                     </div>
                 </div>
                 <div className="div2">
                     <div className="image2"></div>
                     <div className="text">
-                        <h2>Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non numquam eius modi tempora incidunt. </h2><br /><br />
-                        <h3>Sarah Jones</h3>
-                        <h5>Fashion Designer </h5>
+                        <h2 className="styleGridDesc">Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non numquam eius modi tempora incidunt. </h2><br /><br />
+                        <h3 className="styleGridName">Sarah Jones</h3>
+                        <h5 className="styleGridJob">Fashion Designer </h5>
                     </div>
                 </div>
                 <div className="div2">
                     <div className="image3"></div>
                     <div className="text">
-                        <h2>Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non numquam eius modi tempora incidunt. </h2><br /><br />
-                        <h3>Sarah Jones</h3>
-                        <h5>Fashion Designer </h5>
+                        <h2 className="styleGridDesc">Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non numquam eius modi tempora incidunt. </h2><br /><br />
+                        <h3 className="styleGridName">Sarah Jones</h3>
+                        <h5 className="styleGridJob">Fashion Designer </h5>
                     </div>
                 </div>
             </div>
