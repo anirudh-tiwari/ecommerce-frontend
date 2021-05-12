@@ -2,7 +2,7 @@ import React from "react";
 import Login from "./cmp/login";
 import Signin from "./cmp/signin";
 import Product from "./cmp/product";
-import Cardview from "./cmp/card_view";
+import CardView from "./cmp/CardView";
 import Cart from "./cmp/cart";
 import Checkout from "./cmp/checkout";
 import Pagination from "./cmp/pagination";
@@ -28,7 +28,7 @@ const App = () => {
           <Route path="/login" component={Login} />
           <Route path="/signin" component={Signin} />
           <Route path="/checkout" component={Checkout} />
-          <Route path="/cardview" component={Cardview} />
+          <Route path="/cardview" component={CardView} />
           <Route path="/product" component={Product} />
           <Route path="/productsearch" component={ProductSearch} />
           <Route path="/pagination" component={Pagination} />

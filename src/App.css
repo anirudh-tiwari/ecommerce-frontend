@@ -1283,6 +1283,46 @@ element.style {
   cursor: pointer;
 }
 
+@media (max-width: 414px){
+  .cardViewLayout {
+    display: block !important;
+    margin: 20px 60px !important;
+    border: 0px !important;
+    padding: 30px;
+}
+.card_view_lefside {
+  border: 0px !important;
+  padding: 10px 94px !important;
+  margin: 0px 20px !important;
+  height: 225px !important;
+}
+.card_view_image_dimension {
+  height: 190px !important;
+  width: 200px !important;
+  margin-left: -92px !important;
+}
+.cardViewDetail{
+    margin-left: -74px !important;
+    width: 366px !important;
+}
+}
+
+@media (max-width: 375px){
+.card_view_image_dimension {
+    height: 190px !important;
+    width: 200px !important;
+    margin-left: -110px !important;
+}
+}
+
+.cardViewLayout{
+  display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 20px 60px;
+    border: 1px solid lightgray;
+    padding: 30px;
+}
+
 .card_view_lefside {
   border: 1px solid lightgray;
   padding: 10px 80px;

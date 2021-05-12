@@ -49,7 +49,6 @@ function Card(props) {
                     className="grey_button"
                     to={{
                         pathname: '/cardview',
-
                         state: { productID: props.product.ID }
                     }}>
                     Viewss
