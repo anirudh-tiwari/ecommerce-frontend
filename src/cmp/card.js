@@ -19,9 +19,9 @@ function Card(props) {
         }
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
-        history.push({
-            pathname: '/carthover',
-        });
+        // history.push({
+        //     pathname: '/carthover',
+        // });
     }
     return (
         <div className="cards">
@@ -56,7 +56,6 @@ function Card(props) {
                 <Link
                     className="greenButton"
                     onClick={() => cart(props.product.ID)}
-
                 >
                     Buy
                     </Link>

@@ -3,14 +3,16 @@ import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.min.css";
 import { useHistory } from "react-router-dom";
+import CartHover from "./cartHover"
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function CartIcon() {
     const userData = useSelector(state => state.product.product)
     return (
-        <div>
-            {userData.length !== 0 ?
+        <div className="cartIconLogo">>
+            <div >
+                {userData.length !== 0 ?
                     <>
                         <h1 className="cartnumber">{userData.reduce(function (sum, current) {
                             return sum + current.quantity;
@@ -23,6 +25,11 @@ function CartIcon() {
                         <span className="navbar_cart_text"></span>
                     </Link>
                 }
+            </div>
+            <div className="cartIconHover">
+                {/* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */}
+                <CartHover />
+            </div>
         </div>
     )
 }

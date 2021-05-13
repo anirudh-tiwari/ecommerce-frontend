@@ -13,7 +13,7 @@ import Card from "./cmp/card";
 import User from "./cmp/User";
 import Navbar from "./cmp/Navbar";
 import About from "./cmp/About";
-import cartHover from "./cmp/cartHover";
+import CartHover from "./cmp/cartHover";
 import CartIcon from "./cmp/cartIcon";
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -36,7 +36,7 @@ const App = () => {
           <Route path="/cart" component={Cart} />
           <Route path="/about" component={About} />
           <Route path="/user" component={User} />
-          <Route path="/carthover" component={cartHover} />
+          <Route path="/carthover" component={CartHover} />
           <Route path="/card" component={Card} />
           <Route path="/navbar" component={Navbar} />
           <Route path="/carticon" component={CartIcon} />

@@ -851,13 +851,7 @@
   padding: 0px;
 }
 
-.navbarLayout{
-    height: 50px;
-    border: 1px solid;
-    display: grid;
-    grid-template-columns: 810px 430px;
-    background-color: #007bff;
-}
+
 
 .navbar_shopping_bag {
   font-size: 20px;
@@ -896,17 +890,7 @@
   left: 469px;
   height: 36px !important; 
 }
-.navbarRightSide{
-  display: grid;
-    grid-template-columns: 235px 1fr 1fr;
-}
-.navbarAbout{
-  color: white !important;
-  font-size: 20px;
-  margin: 7px 145px;
-  text-decoration: none !important;
-  margin-right: 0px;
-}
+
 
 @media (max-width: 414px) {
   .navbarLayout {
@@ -988,8 +972,7 @@
     background-color: #007bff;
 }
 
-element.style {
-}
+
 .form-control {
     display: block;
     width: 100%;
@@ -1108,7 +1091,26 @@ element.style {
   text-decoration: none !important;
   margin-right: 0px;
 }
+}
 
+.navbarLayout{
+  height: 50px;
+  border: 1px solid;
+  display: grid;
+  grid-template-columns: 810px 1fr;
+  background-color: #007bff;
+}
+
+.navbarRightSide{
+  display: grid;
+  grid-template-columns: 340px 1fr 1fr;
+}
+.navbarAbout{
+  color: white !important;
+  font-size: 20px;
+  margin: 7px 240px;
+  text-decoration: none !important;
+  margin-right: 0px
 }
 
 .navbar_button {
@@ -1126,7 +1128,7 @@ element.style {
   color: yellow !important;
   font-size: 25px !important;
   text-decoration: none !important;
-  margin-top: 9px;
+  margin-top: -9px;
   margin-left: 35px;
 }
 
@@ -1479,12 +1481,30 @@ border: white !important;
     padding: 2px;
     background-color: #eb0028;
     color: #fff;
-    top: 10px;
-    right: 28px;
+    top: 4px;
+    left: 51px;
     border-radius: 50%;
     font-style: normal;
     z-index: 1;
 }
+
+.cartIconLogo {
+    position: relative;
+    z-index: 2;
+}
+
+.cartIconHover{
+  display: none;
+  position: relative;
+  z-index: 1;
+  margin-left: -383px;
+  margin-top: 18px;
+}
+
+.cartIconLogo:hover .cartIconHover {
+  display: block; 
+}
+
 
 .styleGrid{
   display: grid;
@@ -2406,8 +2426,10 @@ border: white !important;
 }
 
 .cartHoverEmpty{
-  width: 458px;
+  /* width: 458px; */
+  width: 442px;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 85%);
+  background-color: white;
   height: 275px;
 }
 
@@ -2444,8 +2466,9 @@ border: white !important;
 }
 
 .cartHover {
-  width: 458px;
+  width: 442px; 
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 85%);
+  background-color: white;
 }
 
 .cartHoverCheckCart{
