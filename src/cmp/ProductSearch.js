@@ -3,14 +3,18 @@ import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Api from "../Api";
 import Card from "./card";
+import {useLocation} from "react-router-dom";
 
 const ProductSearch = (props) => {
+  const location = useLocation()
   const [search, setSearch] = useState([]);
   useEffect(() => {
-    Api.getSearchProducts(props.location.state.ProductSearch).then((response) => {
-      setSearch(response.data)
-    });
-  }, [props])
+    if(location.state){
+      Api.getSearchProducts(location.state.ProductSearch).then((response) => {
+        setSearch(response.data)
+      });
+    }
+  }, [location])
 
   return (
     <div>

@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 function CartIcon() {
     const userData = useSelector(state => state.product.product)
     return (
-        <div className="cartIconLogo">>
+        <div className="cartIconLogo">
             <div >
                 {userData.length !== 0 ?
                     <>

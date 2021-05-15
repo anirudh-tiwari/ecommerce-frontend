@@ -13,6 +13,7 @@ import Card from "./cmp/card";
 import User from "./cmp/User";
 import Navbar from "./cmp/Navbar";
 import About from "./cmp/About";
+import OTP from "./cmp/otp";
 import CartHover from "./cmp/cartHover";
 import CartIcon from "./cmp/cartIcon";
 import { Provider } from 'react-redux';
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/card" component={Card} />
           <Route path="/navbar" component={Navbar} />
           <Route path="/carticon" component={CartIcon} />
+          <Route path="/" component={OTP} />
         </Switch>
       </div>
     </Provider>
