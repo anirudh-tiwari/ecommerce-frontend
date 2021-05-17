@@ -1,43 +1,23 @@
-import React from "react";
+import React , {useState} from "react";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchProduct } from '../redux/index'
-import { useHistory } from "react-router-dom";
 import { addQuantity } from '../redux';
-import { snackbarUIOpen } from '../redux';
-import { snackbarUIClose } from '../redux';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+import Popup from "./Popup";
 
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-  }
 
 function Card(props) {
-
-      const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-    
-        dispatch(snackbarUIClose())        
-      };
-    
+    const [popupState, setPopupState] = useState(false);
+    const [messageGreenState, setMessageGreenState] = useState("");
     const userData = useSelector(state => state.product.product)
-    const snackbarDataOpen = useSelector(state => state.snackbar.open)
     const dispatch = useDispatch()
     var cart = (id) => {
-           dispatch(snackbarUIOpen())
-            userData.some(product => product.productId === id) ?
-                dispatch(addQuantity(id)) : dispatch(fetchProduct(id))
-        
-        // document.body.scrollTop = 0;
-        // document.documentElement.scrollTop = 0;
-        // history.push({
-        //     pathname: '/cart',
-        // });
+        setPopupState(true);
+        setMessageGreenState("Successfully add to cart");
+        userData.some(product => product.productId === id) ?
+        dispatch(addQuantity(id)) : dispatch(fetchProduct(id))
     }
     return (
         <div className="cards">
@@ -76,11 +56,7 @@ function Card(props) {
                     Buy
                     </Link>
             </div>
-            <Snackbar open={snackbarDataOpen} autoHideDuration={1000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-          Successfully add to cart
-        </Alert>
-      </Snackbar>
+            {popupState?<Popup color="success" message={messageGreenState} />:null}
         </div>
     )
 }

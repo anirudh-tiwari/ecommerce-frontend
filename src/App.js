@@ -11,9 +11,11 @@ import { Route, Switch } from 'react-router-dom';
 import ImageSlider from "./cmp/imageslider";
 import Card from "./cmp/card";
 import User from "./cmp/User";
+import Popup from "./cmp/Popup"
 import Navbar from "./cmp/Navbar";
 import About from "./cmp/About";
 import OTP from "./cmp/otp";
+import Verifyotp from "./cmp/Verifyotp";
 import CartHover from "./cmp/cartHover";
 import CartIcon from "./cmp/cartIcon";
 import { Provider } from 'react-redux';
@@ -41,7 +43,9 @@ const App = () => {
           <Route path="/card" component={Card} />
           <Route path="/navbar" component={Navbar} />
           <Route path="/carticon" component={CartIcon} />
-          <Route path="/" component={OTP} />
+          <Route path="/" component={OTP} exact />
+          <Route path="/verify" component={Verifyotp} />
+          <Route path="/popup" component={Popup} />
         </Switch>
       </div>
     </Provider>

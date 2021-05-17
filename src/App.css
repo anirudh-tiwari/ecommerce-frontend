@@ -2640,6 +2640,12 @@
   }
 }
 
+@media (max-width: 393px) {
+  .inner {
+    width: 350px !important;
+    margin-top: 150px !important;
+  }
+}
 .outer {
   display: flex;
   justify-content: center;
@@ -2671,9 +2677,22 @@
   box-shadow: none;
 }
 
-.outer h3 {
+.outer h2 {
   text-align: center;
   margin: 0;
   line-height: 1;
   padding-bottom: 20px;
+  font-size: 30px;
+}
+
+.outer label {
+  font-size: 16px !important;
+}
+
+.registerInputField {
+  font-size: 11px !important;
+}
+
+.registerButton {
+  font-size: 14px !important;
 }
