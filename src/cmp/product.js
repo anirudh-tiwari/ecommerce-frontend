@@ -5,17 +5,34 @@ import Api from "../Api";
 import Card from "./card";
 // import Loadmore from "./loadmore";
 import ImageSlider from "./imageslider";
+import { useLocation } from "react-router-dom";
+import Popup from "./Popup";
+import { Redirect } from "react-router-dom" 
 
 const Product = () => {
+  const location = useLocation();
   const [product, setProduct] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(true);
+  // const [popupVerifyState, setPopupVerifyState] = useState(false);
+  const token = localStorage.getItem("accessToken") 
+
   useEffect(() => {
     Api.getProduct().then((response) => {
       console.log(response)
       setProduct(response.data)
+      // setPopupVerifyState(location.state.value)
     });
   }, [])
+  
+
+  if(loggedIn === false){
+    return <Redirect to='/' />;
+  }
+  
 
   return (
+    <>
+    {token== null?setLoggedIn(false):null}
     <div>
       <ImageSlider />
       <div className="cardLayout">
@@ -31,6 +48,8 @@ const Product = () => {
         {/* <Loadmore state={this.state} loadmore={this.loadmore} /> */}
       </div>
     </div>
+      {/* {popupVerifyState?<Popup color="success" message="OTP Verified" />:null}  */}
+      </>     
   )
 }
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Verifyotp from "./Verifyotp";
 
 export default function OTP() {
     const [mobile_number, setMobile_number] = useState("");
@@ -17,13 +18,14 @@ export default function OTP() {
             body: JSON.stringify(data),
         }).then((result) => {
             result.json().then((resp) => {
-                history.push({ pathname: "/verify", state: { mobile_data: resp.mobile_number, hash: resp.hash } });
+                history.push({ pathname: "/verify", state: { mobile_data: resp.mobile_number, hash: resp.hash , value:true } });
             })
         })
     }
+
     return (
         <div className="outer" >
-            <div className="inner" >
+            <div className="inner" >         
                 <form onSubmit={handleSubmit}>
                     <h2>Register</h2>
 

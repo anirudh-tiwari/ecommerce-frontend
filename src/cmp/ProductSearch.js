@@ -3,11 +3,14 @@ import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Api from "../Api";
 import Card from "./card";
-import {useLocation} from "react-router-dom";
+import {useLocation , Redirect} from "react-router-dom";
 
 const ProductSearch = (props) => {
   const location = useLocation()
   const [search, setSearch] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(true);
+  const token = localStorage.getItem("accessToken") 
+
   useEffect(() => {
     if(location.state){
       Api.getSearchProducts(location.state.ProductSearch).then((response) => {
@@ -16,8 +19,13 @@ const ProductSearch = (props) => {
     }
   }, [location])
 
+  if(loggedIn === false){
+    return <Redirect to='/' />;
+  }
+
   return (
     <div>
+    {token== null?setLoggedIn(false):null}
       <div className="cardLayout">
           {search.map((search_product) => (
             <div >

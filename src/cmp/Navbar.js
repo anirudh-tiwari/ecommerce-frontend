@@ -20,6 +20,10 @@ function Navbar() {
         });
 
     }
+    let logout=()=>{
+       localStorage.removeItem("accessToken")
+       history.push('/');
+    }
     return (
         <div className="navbarLayout">
             <div className="navbarLeftSide">
@@ -48,7 +52,7 @@ function Navbar() {
                 <a className="navbarAbout" href="/about">
                     About Us
                </a>
-                <button class=" navbar_button ">Logout</button>
+                <button class=" navbar_button " onClick={logout()}>Logout</button>
                  < CartIcon / >
 
                 {/* {userData.length !== 0 ?

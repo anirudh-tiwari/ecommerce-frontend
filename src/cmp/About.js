@@ -1,18 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Footer from "./footer";
+import { Redirect} from "react-router-dom";
+
 
 function About() {
     const [expanded, setExpanded] = React.useState(false);
+    const [loggedIn, setLoggedIn] = useState(true);
+    const token = localStorage.getItem("accessToken") 
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
+
+    if(loggedIn === false){
+        return <Redirect to='/' />;
+      }
+    
     return (
         <div className="About">
+        {token== null?setLoggedIn(false):null}
             <div className="photo">
                 <div className="centreText">
                     <h1 className="centreTextTop"><strong>About Us</strong></h1>

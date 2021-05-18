@@ -9,12 +9,12 @@ const Verifyotp = () => {
     const [messageGreenState, setMessageGreenState] = useState("");
     const [popupRedState, setPopupRedState] = useState(false);
     const [messageRedState, setMessageRedState] = useState("");
+    const [popupBlueState, setPopupBlueState] = useState(false);
     const [otp, setOtp] = useState("");
     const [mobile_number, setMobile_number] = useState("");
     const [hash, setHash] = useState("");
     const history = useHistory();
     const location = useLocation();
-
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = {
@@ -31,7 +31,8 @@ const Verifyotp = () => {
                 if(resp.verification){
                     setPopupGreenState(true);
                     setMessageGreenState("Verfied OTP");
-                    history.push("/product");
+                    localStorage.setItem("accessToken",JSON.stringify(resp.accessToken));
+                    history.push({ pathname: "/product", state: {  value:true } });
                 }else if (resp.verification==false) {
                     setPopupRedState(true);
                     setMessageRedState("Incorrect OTP , Try Again")
@@ -47,6 +48,7 @@ const Verifyotp = () => {
     useEffect(() => {
         setMobile_number(location.state.mobile_data)
         setHash(location.state.hash)
+        setPopupBlueState(location.state.value)
     }, []);
 
     return (
@@ -63,6 +65,7 @@ const Verifyotp = () => {
                     <button type="Submit" className="btn btn-dark btn-lg btn-block">Send OTP</button>
                 </form>
             </div >
+            {popupBlueState?<Popup color="info" message={`OTP sent on mobile ${mobile_number}`} />:null}
             {popupGreenState?<Popup color="success" message={messageGreenState} />:null}
             {popupRedState?<Popup color="error" message={messageRedState} />:null}
 

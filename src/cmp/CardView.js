@@ -3,16 +3,26 @@ import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Api from "../Api";
 import { Link } from "@reach/router";
+import { Redirect} from "react-router-dom";
 
 function CardView(props) {
-    const [product, setProduct] = useState([])
+    const [product, setProduct] = useState([]);
+    const [loggedIn, setLoggedIn] = useState(true);
+    const token = localStorage.getItem("accessToken") 
+
     useEffect(() => {
-        Api.getViewProducts(props.location.state.productID).then((response) => {
+        Api.getViewProducts(props?.location?.state?.productID).then((response) => {
             setProduct(response.data)
         });
     }, [])
+
+    if(loggedIn === false){
+        return <Redirect to='/' />;
+      }
+
     return (
         <div className="cardViewLayout">
+        {token== null?setLoggedIn(false):null}
             <div className="card_view_lefside">
                 <div className="card_view_image_dimension">
                     <img

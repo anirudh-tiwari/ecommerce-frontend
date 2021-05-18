@@ -19,6 +19,7 @@ function Card(props) {
         userData.some(product => product.productId === id) ?
         dispatch(addQuantity(id)) : dispatch(fetchProduct(id))
     }
+    
     return (
         <div className="cards">
             <div className="card_image" style={{ backgroundImage: `url('${props.product.IMAGE}')` }}>
