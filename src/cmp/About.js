@@ -1,28 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Accordion from "@material-ui/core/Accordion";
+import { useHistory } from "react-router-dom";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Footer from "./footer";
-import { Redirect} from "react-router-dom";
+// import { Redirect} from "react-router-dom";
 
 
 function About() {
     const [expanded, setExpanded] = React.useState(false);
-    const [loggedIn, setLoggedIn] = useState(true);
-    const token = localStorage.getItem("accessToken") 
+    // const [loggedIn, setLoggedIn] = useState(true);
+    let history = useHistory();
+    // const token = localStorage.getItem("accessToken")        
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
 
-    if(loggedIn === false){
-        return <Redirect to='/' />;
-      }
+    // if(loggedIn === false){
+    //    history.push('/');
+    //     return <Redirect to='/' />;
+    //   }
     
     return (
         <div className="About">
-        {token== null?setLoggedIn(false):null}
+        {/* {token== null?setLoggedIn(false):null} */}
             <div className="photo">
                 <div className="centreText">
                     <h1 className="centreTextTop"><strong>About Us</strong></h1>
@@ -136,9 +139,7 @@ function About() {
                     <i class="fa fa-phone mapIcon" aria-hidden="true"><span className="mapIconTextPhone">+91 99102 31951 </span></i><br />< br />
                     <i class="fa fa-mobile mapIcon" aria-hidden="true"><span className="mapIconTextMobile">+91 83739 34787 </span></i><br />
                 </div>
-            </div><br /><br /><br /><br /><br /><br />
-
-            <Footer />
+            </div>
         </div>
     )
 }

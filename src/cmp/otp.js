@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Verifyotp from "./Verifyotp";
+import Api from "../Api";
+
 
 export default function OTP() {
     const [mobile_number, setMobile_number] = useState("");
@@ -12,15 +14,9 @@ export default function OTP() {
         const data = {
             mobile_number,
         };
-        fetch('http://192.168.1.14:8000/otp/send', {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-        }).then((result) => {
-            result.json().then((resp) => {
-                history.push({ pathname: "/verify", state: { mobile_data: resp.mobile_number, hash: resp.hash , value:true } });
-            })
-        })
+        Api.postOtp(data).then((response) => {
+                history.push({ pathname: "/verify", state: { mobile_data: response.data.mobile_number, hash: response.data.hash , value:true } });
+          });
     }
 
     return (
@@ -35,10 +31,6 @@ export default function OTP() {
                             class="form-control registerInputField" placeholder="Mobile Number " />
                     </div>
                     <button type="Submit" className="btn btn-dark btn-lg btn-block registerButton">Get OTP</button>
-                    <p className="forgot-password text-right">
-                        Already registered <a href="#">log in?</a>
-                    </p>
-                    
                 </form>
             </div >
         </div >

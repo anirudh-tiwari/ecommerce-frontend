@@ -4,11 +4,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.min.css";
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import CartIcon from "./cartIcon";
 
 function Navbar() {
-    const userData = useSelector(state => state.product.product)
     const [types, setTypes] = useState("");
     let history = useHistory();
     const onFormSubmit = e => {
@@ -49,25 +47,9 @@ function Navbar() {
                 </div>
             </div>
             <div className="navbarRightSide">
-                <a className="navbarAbout" href="/about">
-                    About Us
-               </a>
-                <button class=" navbar_button " onClick={logout()}>Logout</button>
+                <Link className="navbarAbout" to="/about"> About</Link>
+                <button class=" navbar_button " onClick={()=>logout()}>Logout</button>
                  < CartIcon / >
-
-                {/* {userData.length !== 0 ?
-                    <>
-                        <h1 className="cartnumber">{userData.reduce(function (sum, current) {
-                            return sum + current.quantity;
-                        }, 0)}</h1>
-                        <Link to="/cart" className=" navbar_cart fa fa-shopping-cart navbarCart">
-                            <span className="navbar_cart_text"></span>
-                        </Link>
-                    </> :
-                    <Link to="/cart" className=" navbar_cart fa fa-shopping-cart navbarCart">
-                        <span className="navbar_cart_text"></span>
-                    </Link>
-                } */}
             </div>
         </div>
     )

@@ -7,6 +7,9 @@ import {
     ADD_QUANTITY,
     SUB_QUANTITY
 } from "./productTypes"
+import Api from "../../Api" 
+
+
 
 export const fetchProductRequest = () => {
     return {
@@ -55,13 +58,20 @@ export const emptyCart = () => {
 export const fetchProduct = (id) => {
     return (dispatch) => {
         dispatch(fetchProductRequest())
-        fetch(`http://192.168.1.14:8000/product/view?ID=${id}`)
-            .then(data => data.json()).then(response => {
-                const product = response
-                dispatch(fetchProductSuccess(product))
-            }).catch(error => {
-                const errorMsg = error.message
-                dispatch(FETCH_Product_FAILURE(errorMsg))
-            })
+        Api.getViewProducts(id).then((response) => {
+            const product = response.data
+            dispatch(fetchProductSuccess(product))
+          }).catch(error => {
+            const errorMsg = error.message
+            dispatch(FETCH_Product_FAILURE(errorMsg))
+        })
+        // fetch(`http://192.168.1.6:8000/product/view?ID=${id}`)
+        //     .then(data => data.json()).then(response => {
+        //         const product = response
+        //         dispatch(fetchProductSuccess(product))
+        //     }).catch(error => {
+        //         const errorMsg = error.message
+        //         dispatch(FETCH_Product_FAILURE(errorMsg))
+        //     })
     }
 }

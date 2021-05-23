@@ -9,5 +9,11 @@ const Api = {
   getSearchProducts: (search) => {
     return fetchRequests.get(`product/search?type=${search}`);
   },
+  postOtp: (data) => {
+    return fetchRequests.post(`otp/send`,data);
+  },
+  verifyOtp: (data) => {
+    return fetchRequests.post(`otp/verify`,data);
+  },
 };
 export default Api;

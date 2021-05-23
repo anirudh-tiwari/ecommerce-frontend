@@ -3,6 +3,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Popup from "./Popup";
+import Api from "../Api";
+
 
 const Verifyotp = () => {
     const [popupGreenState, setPopupGreenState] = useState(false);
@@ -22,27 +24,21 @@ const Verifyotp = () => {
             hash,
             otp,
         };
-        fetch('http://192.168.1.14:8000/otp/verify', {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-        }).then((result) => {
-            result.json().then((resp) => {
-                if(resp.verification){
-                    setPopupGreenState(true);
-                    setMessageGreenState("Verfied OTP");
-                    localStorage.setItem("accessToken",JSON.stringify(resp.accessToken));
-                    history.push({ pathname: "/product", state: {  value:true } });
-                }else if (resp.verification==false) {
-                    setPopupRedState(true);
-                    setMessageRedState("Incorrect OTP , Try Again")
-                }
-                else{
-                    setPopupRedState(true);
-                    setMessageRedState("Timeout Pls Try Again")
-                }
-            })
-        })
+        Api.verifyOtp(data).then((response) => {
+            if(response.data.verification){
+                setPopupGreenState(true);
+                setMessageGreenState("Verfied OTP");
+                localStorage.setItem("accessToken",JSON.stringify(response.data.accessToken));
+                history.push({ pathname: "/product", state: {  value:true } });
+            }else if (response.data.verification==false) {
+                setPopupRedState(true);
+                setMessageRedState("Incorrect OTP , Try Again")
+            }
+            else{
+                setPopupRedState(true);
+                setMessageRedState("Timeout Pls Try Again")
+            }
+      });
     }
 
     useEffect(() => {
