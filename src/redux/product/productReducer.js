@@ -18,35 +18,50 @@ const productReducer = (state = initialState, action) => {
     const { payload, type } = action
     switch (type) {
         case FETCH_Product_REQUEST:
-            return {
+            return {  
                 ...state,
                 loading: true
             }
         case FETCH_Product_SUCCESS:
-            var cartItem = {
-                quantity: 1,
-                price: payload.DISCOUNT_PRICE,
-                productId: payload.ID,
-                product: payload
-            }
+            var ani=payload
+            debugger
             return {
                 loading: false,
-                product: [...state.product, cartItem],
+                product: [...state.product, ...payload],
                 error: ''
             }
-        case ADD_QUANTITY:
-            return {
+        // case FETCH_Product_SUCCESS:
+        //     debugger
+        //     var cartItem = {
+        //         quantity: payload.QUANTITY,
+        //         price: payload.DISCOUNT_PRICE,
+        //         productId: payload.ID,
+        //         product: payload
+        //     }
+        //     debugger
+        //     return {
+        //         loading: false,
+        //         product: [...state.product, cartItem],
+        //         error: ''
+        //     }
+        case ADD_QUANTITY:                                                                                               
+            return {                    
                 ...state,
                 product: state.product.map(products =>
-                    products.product.ID === action.id
-                        ? { ...products, quantity: products.quantity + 1, price: (products.quantity + 1) * products.product.DISCOUNT_PRICE }
+                    products.ID === action.id
+                        ? { ...products, QUANTITY: products.QUANTITY + 1, DISCOUNT_PRICE: (products.QUANTITY + 1) * products.actualPrice }
                         : products,
-                ),
+                )
+                // state.product.map(products =>
+                //     products.product.ID === action.id
+                //         ? { ...products, quantity: products.quantity + 1, price: (products.quantity + 1) * products.product.DISCOUNT_PRICE }
+                //         : products,
+                // ),
             };
         case REMOVE_FROM_CART:
             return {
                 ...state,
-                product: state.product.filter(products =>
+                product: state.product.filter(products =>      
                     products.productId !== action.id
                 )
             };
@@ -77,8 +92,7 @@ const productReducer = (state = initialState, action) => {
                 product: [],
                 error: payload
             }
-        default: return state
-
+        default: return state  
     }
 }
 

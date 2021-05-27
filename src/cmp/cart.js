@@ -1,23 +1,36 @@
-import React from "react";
+import React , {useEffect} from "react";
 import "../App.css";
 import { useSelector, useDispatch } from 'react-redux'
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "@reach/router";
+import { fetchProduct } from '../redux/index'
 import { addQuantity, subtractQuantity, removeFromCart, emptyCart } from '../redux';
+import Api from "../Api";
+
 
 const Cart = () => {
+  useEffect(() => {
+    dispatch(fetchProduct())
+  }, [])
+
+  const dispatch = useDispatch()
   const userData = useSelector(state => state.product.product)
   console.log("zzzzzzzzz", userData)
   console.log("length of array", userData.length)
-  const dispatch = useDispatch()
   var
-    quantityAdd = (id) => {
+  quantityAdd = (id) => {
+    const data = {
+      PRODUCT_ID:id
+  }
+  Api.postAddQuantity(data).then((response) => {
+      const product = response.data
       dispatch(addQuantity(id))
-    }
+    })
+  }
   var
-    quantitySubtract = (id) => {
-      dispatch(subtractQuantity(id))
-    }
+  quantitySubtract = (id) => {
+    dispatch(subtractQuantity(id))
+  }
   var quantityDelete = (id) => {
     dispatch(removeFromCart(id))
   }
@@ -26,6 +39,7 @@ const Cart = () => {
     // userData.splice(0, userData.length)
   }
 
+  
   return (
     <div >
       {userData.length === 0 ? <div className="cartEmptyText cart">
@@ -46,35 +60,35 @@ const Cart = () => {
                   <div >
                     <img
                       className="cart_card_image"
-                      src={ProductRecord.product.IMAGE}
+                      src={ProductRecord.IMAGE}
                       alt="Avatar"
                     />
                   </div>
                   <div >
                     <div>
-                      <h3 className="cartProductName">{ProductRecord.product.NAME}</h3>
-                      <h3 className="cartProductName">{ProductRecord.product.DISCOUNT_PRICE}</h3>
+                      <h3 className="cartProductName">{ProductRecord.NAME}</h3>
+                      <h3 className="cartProductName">{ProductRecord.DISCOUNT_PRICE}</h3>
                     </div>
                   </div>
                   <div >
                     <div >
                       <h3 className="cartProductName">Qty. </h3>
-                      <h3 className="cartProductName">{ProductRecord.quantity}</h3>
+                      <h3 className="cartProductName">{ProductRecord.QUANTITY}</h3>
                     </div>
                   </div>
                   <div >
                     {/* <div className=""> */}
                     <h3 className="font_increase">
-                      <Link to={"/"} onClick={() => quantityAdd(ProductRecord.product.ID)}>
+                      <Link to={"/"} onClick={() => quantityAdd(ProductRecord.ID)}>
                         <span><i class="fa fa-plus cartIcon"></i></span>
                       </Link>
-                      <Link to={"/"} onClick={() => quantitySubtract(ProductRecord.product.ID)}>
+                      <Link to={"/"} onClick={() => quantitySubtract(ProductRecord.ID)}>
                         <span><i class="fa fa-minus cartIcon"></i></span>
                       </Link>
                     </h3>
                   </div>
                   <div>
-                    <Link to={"/"} onClick={() => quantityDelete(ProductRecord.product.ID)}>
+                    <Link to={"/"} onClick={() => quantityDelete(ProductRecord.ID)}>
                       <span><i class="fa fa-trash cartIconDelete"></i></span>
                     </Link>
                     {/* <button onClick={() => quantityDelete(ProductRecord.product.ID)}>delete</button> */}
@@ -89,7 +103,7 @@ const Cart = () => {
               <h2>Total Items</h2>
               <h2>
                 <span className="color">{userData.reduce(function (sum, current) {
-                  return sum + current.quantity;
+                  return sum + current.QUANTITY; 
                 }, 0)}</span>
               </h2>
             </div>
@@ -97,7 +111,7 @@ const Cart = () => {
               <h2>Total Payments</h2>
               <h2 className="cartTotalPayPadding">
                 {userData.reduce(function (sum, current) {
-                  return sum + current.price;
+                  return sum + current.DISCOUNT_PRICE;
                 }, 0)}
               </h2>
               <br />
@@ -107,15 +121,13 @@ const Cart = () => {
             <Link class="grey_button" to={"/"}>
               CHECKOUT
               </Link>
-            {/* <Link class="red_button position2" to={"/"}>
-              CLEAR
-              </Link> */}
             <button class="red_button position2" onClick={cleardata}>
-              {/* {userData.splice(0, userData.length)} */}
               CLEAR
             </button>
           </div>
         </div>
+
+              // {userData.splice(0, userData.length)} 
         // <div className="container-fluid">
         //   <div className="row">
         //     <div className="col-sm-8 ">

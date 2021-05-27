@@ -1,7 +1,7 @@
 import fetchRequests from "./Fetch";
 const Api = {
   getProduct: () => {
-    return fetchRequests.get("product/get");
+    return fetchRequests.secured("product/get",'GET');
   },
   getViewProducts: (id) => {
     return fetchRequests.get(`product/view?ID=${id}`);
@@ -15,5 +15,15 @@ const Api = {
   verifyOtp: (data) => {
     return fetchRequests.post(`otp/verify`,data);
   },
-};
+  getCartProduct: () => {
+    return fetchRequests.secured(`cart/get`,'GET');
+    // return fetchRequests.secured(`cart/get?ID=${id}`,'GET');
+  },
+  postCart: (data) => {
+    return fetchRequests.secured("cart/create",'POST',data);
+  },
+  postAddQuantity: (data) => {
+    return fetchRequests.secured("cart/addQuantity",'POST',data);
+  },
+  };
 export default Api;

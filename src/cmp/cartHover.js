@@ -18,28 +18,29 @@ function CartHover() {
                 <div className="cartHover">
                     <div className="cartHoverProduct">
                         {userData.map((ProductRecord) => {
+                                    // debugger;
                             return (<div className="cartHoverProductDetail">
                                 <div>
                                     <img
                                         className="cart_card_image"
-                                        src={ProductRecord.product.IMAGE}
+                                        src={ProductRecord.IMAGE}
                                         alt="Avatar"
                                     />
                                 </div>
-                                <h3>{ProductRecord.product.NAME}</h3>
-                                <h3>{ProductRecord.product.DISCOUNT_PRICE}</h3>
-                                <h3>{ProductRecord.quantity}</h3>
+                                <h3>{ProductRecord.NAME}</h3>
+                                <h3>{ProductRecord.DISCOUNT_PRICE}</h3>
+                                <h3>{ProductRecord.QUANTITY}</h3>
                                 {/* <div className="cartBorder"></div> */}
                             </div>)
                         }
                         )}
                     </div>
-                    <div className="cartHoverTotal">
+                    {/* <div className="cartHoverTotal">
                         <h2 className="cartHoverTotalPrice">Total</h2>
                 ₹{userData.reduce(function (sum, current) {
-                            return sum + current.price;
+                            return sum + current.DISCOUNT_PRICE;
                         }, 0)}
-                    </div>
+                    </div> */}
                     <div>
                         <Link to="/cart" className="cartHoverCheckCart">
                             Check my cart

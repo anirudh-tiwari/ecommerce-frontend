@@ -15,7 +15,7 @@ function CartIcon() {
                 {userData.length !== 0 ?
                     <>
                         <h1 className="cartnumber">{userData.reduce(function (sum, current) {
-                            return sum + current.quantity;
+                            return sum + current.QUANTITY;
                         }, 0)}</h1>
                         <Link to="/cart" className=" navbar_cart fa fa-shopping-cart navbarCart">
                             <span className="navbar_cart_text"></span>

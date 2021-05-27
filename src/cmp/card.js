@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import React , {useState , useEffect} from "react";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchProduct } from '../redux/index'
 import { addQuantity } from '../redux';
 import Popup from "./Popup";
+import Api from "../Api";
 
 
 function Card(props) {
@@ -16,9 +17,43 @@ function Card(props) {
     var cart = (id) => {
         setPopupState(true);
         setMessageGreenState("Successfully add to cart");
-        userData.some(product => product.productId === id) ?
-        dispatch(addQuantity(id)) : dispatch(fetchProduct(id))
+        if(userData.some(product => product.ID === id)){
+            const data = {
+                PRODUCT_ID:id
+            }
+            Api.postAddQuantity(data).then((response) => {
+                const product = response.data
+              })
+        }
+        else{
+            const data = {
+                QUANTITY: 1,
+                PRODUCT_ID: id
+            };
+            // dispatch(addQuantity(id))    
+            Api.postCart(data).then((response) => {
+                console.log(response)
+            });
+        }
+        // dispatch(fetchProduct(id)) 
     }
+    
+    // var cart = (id) => {
+    //     const data = {
+    //         QUANTITY: 1,
+    //         PRODUCT_ID: id
+    //     };
+    //     Api.postCart(data).then((response) => {
+    //         console.log(response)
+    //     });
+    //     setPopupState(true);
+    //     setMessageGreenState("Successfully add to cart");
+    //     userData.some(product => product.productId === id) ?
+    //     dispatch(addQuantity(id)) : dispatch(fetchProduct(id))
+    // }
+    useEffect(() => {
+        dispatch(fetchProduct())
+      }, [])
     
     return (
         <div className="cards">

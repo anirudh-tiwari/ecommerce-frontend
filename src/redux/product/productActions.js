@@ -7,8 +7,8 @@ import {
     ADD_QUANTITY,
     SUB_QUANTITY
 } from "./productTypes"
-import Api from "../../Api" 
 
+import Api from "../../Api" 
 
 
 export const fetchProductRequest = () => {
@@ -43,6 +43,7 @@ export const subtractQuantity = id => {
     };
 };
 export const addQuantity = id => {
+
     return {
         type: ADD_QUANTITY,
         id,
@@ -55,23 +56,28 @@ export const emptyCart = () => {
     };
 };
 
-export const fetchProduct = (id) => {
+export const fetchProduct = () => {
     return (dispatch) => {
         dispatch(fetchProductRequest())
-        Api.getViewProducts(id).then((response) => {
+        Api.getCartProduct().then((response) => {
             const product = response.data
             dispatch(fetchProductSuccess(product))
           }).catch(error => {
             const errorMsg = error.message
             dispatch(FETCH_Product_FAILURE(errorMsg))
         })
-        // fetch(`http://192.168.1.6:8000/product/view?ID=${id}`)
-        //     .then(data => data.json()).then(response => {
-        //         const product = response
-        //         dispatch(fetchProductSuccess(product))
-        //     }).catch(error => {
-        //         const errorMsg = error.message
-        //         dispatch(FETCH_Product_FAILURE(errorMsg))
-        //     })
     }
 }
+
+// export const AddToCart = (id) => {
+//     return (dispatch) => {
+//         dispatch(fetchProductRequest())
+//         Api.getViewProducts(id).then((response) => {
+//             const product = response.data
+//             dispatch(fetchProductSuccess(product))
+//           }).catch(error => {
+//             const errorMsg = error.message
+//             dispatch(FETCH_Product_FAILURE(errorMsg))
+//         })
+//     }
+// }
