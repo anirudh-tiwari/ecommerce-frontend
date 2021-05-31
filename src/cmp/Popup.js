@@ -27,7 +27,7 @@ const Popup = (props) => {
 
     return (
         <div>
-        <Snackbar open={snackbarDataOpen} autoHideDuration={20000} onClose={handleClose}>
+        <Snackbar open={snackbarDataOpen} autoHideDuration={2000} onClose={handleClose}>
           <Alert onClose={handleClose} severity={props.color}>
              {props.message}                      
           </Alert>

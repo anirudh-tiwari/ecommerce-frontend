@@ -56,7 +56,22 @@ export const emptyCart = () => {
     };
 };
 
-export const fetchProduct = () => {
+
+export const fetchProduct = (id) => {
+    debugger;
+    return (dispatch) => {
+        dispatch(fetchProductRequest())
+        Api.getProductRedux(id).then((response) => {
+            const product = response.data
+            dispatch(fetchProductSuccess(product))
+          }).catch(error => {
+            const errorMsg = error.message
+            dispatch(FETCH_Product_FAILURE(errorMsg))
+        })
+    }
+}
+
+export const fetchCartProduct = () => {
     return (dispatch) => {
         dispatch(fetchProductRequest())
         Api.getCartProduct().then((response) => {
@@ -68,16 +83,3 @@ export const fetchProduct = () => {
         })
     }
 }
-
-// export const AddToCart = (id) => {
-//     return (dispatch) => {
-//         dispatch(fetchProductRequest())
-//         Api.getViewProducts(id).then((response) => {
-//             const product = response.data
-//             dispatch(fetchProductSuccess(product))
-//           }).catch(error => {
-//             const errorMsg = error.message
-//             dispatch(FETCH_Product_FAILURE(errorMsg))
-//         })
-//     }
-// }

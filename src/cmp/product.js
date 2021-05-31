@@ -3,6 +3,8 @@ import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Api from "../Api";
 import Card from "./card";
+import { fetchCartProduct } from '../redux/index'
+import { useSelector, useDispatch } from 'react-redux'
 // import Loadmore from "./loadmore";
 import ImageSlider from "./imageslider";
 import { useLocation } from "react-router-dom";
@@ -13,22 +15,19 @@ const Product = () => {
   const location = useLocation();
   const [product, setProduct] = useState([]);
   const [loggedIn, setLoggedIn] = useState(true);
+  const dispatch = useDispatch()
   // const [popupVerifyState, setPopupVerifyState] = useState(false);
   // const token = localStorage.getItem("accessToken") 
-
-  useEffect(() => {
-    Api.getProduct().then((response) => {
-      console.log(response)
-      setProduct(response.data)
-    });
+  const hasData = useSelector(state => state.product.hasData)
+    useEffect(() => {
+      Api.getProduct().then((response) => {
+        setProduct(response.data)
+      });
+      if(!hasData){
+          dispatch(fetchCartProduct()) 
+      }
   }, [])
   
-
-  // if(loggedIn === false){
-  //   return <Redirect to='/' />;
-  // }
-  
-
   return (
     <>
     {/* {token== null?setLoggedIn(false):null} */}

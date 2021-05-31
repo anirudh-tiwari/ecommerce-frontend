@@ -6,37 +6,68 @@ import { Link } from "@reach/router";
 import { fetchProduct } from '../redux/index'
 import { addQuantity, subtractQuantity, removeFromCart, emptyCart } from '../redux';
 import Api from "../Api";
+import { useHistory } from "react-router-dom";
 
 
 const Cart = () => {
-  useEffect(() => {
-    dispatch(fetchProduct())
-  }, [])
+  // useEffect(() => {
+  //   dispatch(fetchProduct())
+  // }, [])
 
   const dispatch = useDispatch()
+  let history = useHistory();
   const userData = useSelector(state => state.product.product)
   console.log("zzzzzzzzz", userData)
   console.log("length of array", userData.length)
+
+
+  var quantityAdd = (id) => {
+    userData.forEach(products =>{
+      if(products.ID === id){
+        dispatch(addQuantity(id))
+      let data={
+          QUANTITY: products.QUANTITY + 1,
+          PRODUCT_ID:id
+        } 
+        Api.postQuantity(data).then((response) => {
+          const product = response.data 
+        }) 
+}
+  })
+  }
+  var quantitySubtract = (id) => {
+    userData.forEach(products =>{
+      if(products.ID === id){
+      let data={
+          QUANTITY: products.QUANTITY !== 1 ? products.QUANTITY - 1 : 1,
+          // DISCOUNT_PRICE: products.DISCOUNT_PRICE !== products.actualPrice ?  (products.QUANTITY - 1) * products.actualPrice : products.actualPrice, 
+          PRODUCT_ID:id
+        } 
+     Api.postQuantity(data).then((response) => {
+        dispatch(subtractQuantity(id))
+        // history.push('/cart');
+  }) 
+}
+    }
+  )
+  }
+
   var
-  quantityAdd = (id) => {
+  quantityDelete = (id) => {
     const data = {
       PRODUCT_ID:id
   }
-  Api.postAddQuantity(data).then((response) => {
-      const product = response.data
-      dispatch(addQuantity(id))
+  Api.deleteProduct(data).then((response) => {
+      const product = response.data 
+      dispatch(removeFromCart(id))
     })
   }
   var
-  quantitySubtract = (id) => {
-    dispatch(subtractQuantity(id))
-  }
-  var quantityDelete = (id) => {
-    dispatch(removeFromCart(id))
-  }
-  var cleardata = () => {
-    dispatch(emptyCart())
-    // userData.splice(0, userData.length)
+  cleardata = () => {
+  Api.deleteAll().then((response) => {
+      const product = response.data 
+      dispatch(emptyCart())
+    })
   }
 
   
@@ -111,7 +142,7 @@ const Cart = () => {
               <h2>Total Payments</h2>
               <h2 className="cartTotalPayPadding">
                 {userData.reduce(function (sum, current) {
-                  return sum + current.DISCOUNT_PRICE;
+                  return sum + current.actualPrice;
                 }, 0)}
               </h2>
               <br />

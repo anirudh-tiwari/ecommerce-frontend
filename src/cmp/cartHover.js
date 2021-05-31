@@ -18,7 +18,6 @@ function CartHover() {
                 <div className="cartHover">
                     <div className="cartHoverProduct">
                         {userData.map((ProductRecord) => {
-                                    // debugger;
                             return (<div className="cartHoverProductDetail">
                                 <div>
                                     <img

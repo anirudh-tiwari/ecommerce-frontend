@@ -3,6 +3,9 @@ const Api = {
   getProduct: () => {
     return fetchRequests.secured("product/get",'GET');
   },
+  getProductRedux: (id) => {
+    return fetchRequests.secured(`product/redux?ID=${id}`,'GET');
+  },
   getViewProducts: (id) => {
     return fetchRequests.get(`product/view?ID=${id}`);
   },
@@ -17,13 +20,18 @@ const Api = {
   },
   getCartProduct: () => {
     return fetchRequests.secured(`cart/get`,'GET');
-    // return fetchRequests.secured(`cart/get?ID=${id}`,'GET');
   },
   postCart: (data) => {
     return fetchRequests.secured("cart/create",'POST',data);
   },
-  postAddQuantity: (data) => {
-    return fetchRequests.secured("cart/addQuantity",'POST',data);
+  postQuantity: (data) => {
+    return fetchRequests.secured("cart/Quantity",'POST',data);
+  },
+  deleteProduct: (data) => {
+    return fetchRequests.secured("cart/delete",'DELETE',data);
+  },
+  deleteAll: () => {
+    return fetchRequests.secured("cart/empty",'DELETE');
   },
   };
 export default Api;

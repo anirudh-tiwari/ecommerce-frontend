@@ -17,43 +17,30 @@ function Card(props) {
     var cart = (id) => {
         setPopupState(true);
         setMessageGreenState("Successfully add to cart");
-        if(userData.some(product => product.ID === id)){
-            const data = {
-                PRODUCT_ID:id
+        let cartBlank=true;
+        userData.forEach((product) => {
+            if(product.ID === id){
+                cartBlank=false;
+                let data={
+                    QUANTITY: product.QUANTITY + 1,
+                    PRODUCT_ID:id
+                }
+                Api.postQuantity(data).then(() => {
+                    dispatch(addQuantity(id))    
+                })    
             }
-            Api.postAddQuantity(data).then((response) => {
-                const product = response.data
-              })
-        }
-        else{
+        })
+        if(cartBlank){
             const data = {
                 QUANTITY: 1,
                 PRODUCT_ID: id
             };
-            // dispatch(addQuantity(id))    
             Api.postCart(data).then((response) => {
-                console.log(response)
-            });
+                dispatch(fetchProduct(id)) 
+            }); 
         }
-        // dispatch(fetchProduct(id)) 
     }
     
-    // var cart = (id) => {
-    //     const data = {
-    //         QUANTITY: 1,
-    //         PRODUCT_ID: id
-    //     };
-    //     Api.postCart(data).then((response) => {
-    //         console.log(response)
-    //     });
-    //     setPopupState(true);
-    //     setMessageGreenState("Successfully add to cart");
-    //     userData.some(product => product.productId === id) ?
-    //     dispatch(addQuantity(id)) : dispatch(fetchProduct(id))
-    // }
-    useEffect(() => {
-        dispatch(fetchProduct())
-      }, [])
     
     return (
         <div className="cards">

@@ -1,0 +1,52 @@
+
+var cart = (id) => {
+        setPopupState(true);
+        setMessageGreenState("Successfully add to cart");
+        userData.forEach(products =>{
+            if(products.ID === id){
+            //   dispatch(addQuantity(id))
+            let data={
+                QUANTITY: products.QUANTITY + 1,
+                PRODUCT_ID:id
+              } 
+              Api.postQuantity(data).then((response) => {
+                const product = response.data 
+              }) 
+      }
+      else{
+          debugger
+        const data = {
+            QUANTITY: 1,
+            PRODUCT_ID: id
+        };
+        Api.postCart(data).then((response) => {
+            console.log(response)
+        });
+    }
+        })
+        dispatch(fetchProduct(id)) 
+    }
+    
+    var cart = (id) => {
+        setPopupState(true);
+        setMessageGreenState("Successfully add to cart");
+        if(userData.some(product => product.ID === id)){
+            const data = {
+                PRODUCT_ID:id
+            }
+            Api.postAddQuantity(data).then((response) => {
+                const product = response.data
+              })
+        }
+        else{
+            const data = {
+                QUANTITY: 1,
+                PRODUCT_ID: id
+            };
+            // dispatch(addQuantity(id))    
+            Api.postCart(data).then((response) => {
+                console.log(response)
+            });
+        }
+        dispatch(fetchProduct()) 
+    }

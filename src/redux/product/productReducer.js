@@ -11,7 +11,8 @@ import {
 const initialState = {
     loading: false,
     product: [],
-    error: ''
+    error: '',
+    hasData: false
 };
 
 const productReducer = (state = initialState, action) => {
@@ -23,59 +24,38 @@ const productReducer = (state = initialState, action) => {
                 loading: true
             }
         case FETCH_Product_SUCCESS:
-            var ani=payload
-            debugger
             return {
                 loading: false,
-                product: [...state.product, ...payload],
-                error: ''
+                product: [...state.product, ...payload], 
+                error: '',
+                hasData: true
             }
-        // case FETCH_Product_SUCCESS:
-        //     debugger
-        //     var cartItem = {
-        //         quantity: payload.QUANTITY,
-        //         price: payload.DISCOUNT_PRICE,
-        //         productId: payload.ID,
-        //         product: payload
-        //     }
-        //     debugger
-        //     return {
-        //         loading: false,
-        //         product: [...state.product, cartItem],
-        //         error: ''
-        //     }
-        case ADD_QUANTITY:                                                                                               
+        case ADD_QUANTITY:                  
             return {                    
                 ...state,
                 product: state.product.map(products =>
                     products.ID === action.id
-                        ? { ...products, QUANTITY: products.QUANTITY + 1, DISCOUNT_PRICE: (products.QUANTITY + 1) * products.actualPrice }
+                        ? { ...products, QUANTITY: products.QUANTITY + 1, actualPrice: (products.QUANTITY + 1) * products.DISCOUNT_PRICE }
                         : products,
                 )
-                // state.product.map(products =>
-                //     products.product.ID === action.id
-                //         ? { ...products, quantity: products.quantity + 1, price: (products.quantity + 1) * products.product.DISCOUNT_PRICE }
-                //         : products,
-                // ),
             };
         case REMOVE_FROM_CART:
             return {
                 ...state,
                 product: state.product.filter(products =>      
-                    products.productId !== action.id
+                    products.ID !== action.id
                 )
             };
         case SUB_QUANTITY:
             return {
                 ...state,
                 product: state.product.map(products =>
-                    products.product.ID === action.id
+                    products.ID === action.id
                         ? {
                             ...products,
-                            quantity: products.quantity !== 1 ? products.quantity - 1 : 1,
-                            price: products.price !== 0 ? products.product.DISCOUNT_PRICE : (products.quantity - 1) * products.price
-                            // price: (products.quantity - 1) * products.price
-                        }
+                            QUANTITY: products.QUANTITY !== 1 ? products.QUANTITY - 1 : 1,
+                            actualPrice: products.DISCOUNT_PRICE !== products.actualPrice ? (products.QUANTITY - 1) * products.DISCOUNT_PRICE : products.DISCOUNT_PRICE 
+                        }                        
                         : products,
                 ),
             };
@@ -83,7 +63,7 @@ const productReducer = (state = initialState, action) => {
             return {
                 ...state,
                 product: state.product.filter(products =>
-                    products.id === 0
+                    products.ID === 0
                 )
             };
         case FETCH_Product_FAILURE:
