@@ -16,6 +16,7 @@ function Card(props) {
     const dispatch = useDispatch()
     var cart = (id) => {
         setPopupState(true);
+        window.navigator.vibrate(1000);
         setMessageGreenState("Successfully add to cart");
         let cartBlank=true;
         userData.forEach((product) => {

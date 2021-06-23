@@ -27,7 +27,9 @@ var fetchRequests = {
     return fetch(base_url + endpoints, {
       method: method || "GET",
       headers: {
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem("accessToken"))}`,
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("accessToken")
+        )}`,
         "Content-Type": "application/json",
       },
       ...(data && {
@@ -72,7 +74,9 @@ var fetchRequests = {
       method: method || "POST",
       body: data,
       headers: {
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem("accessToken"))}`,
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("accessToken")
+        )}`,
       },
     })
       .then((data) => {
